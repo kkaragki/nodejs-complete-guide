@@ -1,1 +1,23 @@
-[{"title":"A Book","imageURL":"https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg","price":"18.99","description":"An awesome book!"},{"title":"Another Book","imageURL":"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh_depYTg6PwtWYx6-F8WOwDqG3O3h5aOBooVKYoN8Kg9Ka60ZEg","price":"14.99","description":"Yet another book!"}]
+[
+  {
+    "id": "12345",
+    "title": "A Book",
+    "imageURL": "https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg",
+    "price": "18.99",
+    "description": "An awesome book!"
+  },
+  {
+    "id": "112233",
+    "title": "Another Book",
+    "imageURL": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRh_depYTg6PwtWYx6-F8WOwDqG3O3h5aOBooVKYoN8Kg9Ka60ZEg",
+    "price": "14.99",
+    "description": "Yet another book!"
+  },
+  {
+    "title": "Another Product",
+    "imageURL": "https://timedotcom.files.wordpress.com/2015/06/521811839-copy.jpg",
+    "price": "9.99",
+    "description": "Another book",
+    "id": "0.35991682320415985"
+  }
+]
