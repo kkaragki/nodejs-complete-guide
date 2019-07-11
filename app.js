@@ -42,9 +42,9 @@ User.hasMany(Product);
 User.hasOne(Cart);
 Cart.belongsTo(User); // Optional
 Cart.belongsToMany(Product, {through: CartItem});
-Product.belongsToMany(Cart, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem}); // Optional
 Order.belongsTo(User);
-User.hasMany(Order);
+User.hasMany(Order); // Optional
 Order.belongsToMany(Product, {through: OrderItem});
 
 sequelize
