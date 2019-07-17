@@ -19,9 +19,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use((req, res, next) => {
-  User.findById('5d2861d21c9d4400004ab1c1')
+  User.findById('5d2f1f5d1b8c1015ac89a58d')
     .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => console.log(err));
@@ -35,9 +35,23 @@ app.use(errorController.get404);
 /* Mongoose CODE */
 mongoose
   .connect(
-    'mongodb+srv://kkaragki:sql123321@cluster0-ppwqk.mongodb.net/shop?retryWrites=true&w=majority'
+    'mongodb+srv://kkaragki:sql123321@cluster0-ppwqk.mongodb.net/shop?retryWrites=true&w=majority',
+    { useNewUrlParser: true }
   )
   .then(result => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'Kirk',
+          email: 'kirk@kirk.gr',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
+    });
+    
     app.listen(3000);
   })
   .catch(err => console.log(err));
