@@ -88,7 +88,7 @@ exports.postSignup = (req, res, next) => {
           });
           return user.save();
         })
-        .then(result => {
+        .then(() => {
           res.redirect('/login');
         });
     })
@@ -191,7 +191,7 @@ exports.postNewPassword = (req, res, next) => {
       resetUser.resetTokenExpiration = undefined;
       return resetUser.save();
     })
-    .then(result => {
+    .then(() => {
       res.redirect('/login');
     })
     .catch(err => {

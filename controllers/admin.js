@@ -22,7 +22,7 @@ exports.postAddProduct = (req, res, next) => {
   });
   product
     .save()
-    .then(result => {
+    .then(() => {
       console.log('Created Product');
       res.redirect('/admin/products');
     })
@@ -85,7 +85,6 @@ exports.getProducts = (req, res, next) => {
     //   .select('title price -_id')
     //   .populate('userId', 'name')
     .then(products => {
-      // console.log(products);
       res.render('admin/products', {
         prods: products,
         pageTitle: 'Admin Products',
