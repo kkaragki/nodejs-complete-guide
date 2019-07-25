@@ -9,16 +9,16 @@
             <h1>Nothing there!</h1>
         <% } else { %>
             <ul class="orders">
-                <% orders.forEach(order => {  var total = 0 %>
+                <% orders.forEach(order => {  var orderTotal = 0 %>
                     <li class="orders__item">
                         <label class="bold red">Order #: </label><span class="bold"> <%= order._id %></span>
                         <ul class="orders__products">
                             <% order.products.forEach(p => {  %>
                                 <li class="orders__products-item"><%= p.product.title %> (<%= p.quantity %>)</li>
-                                <% total += p.product.price * p.quantity %>
+                                <% orderTotal += p.product.price * p.quantity %>
                             <% }); %>
                         </ul>
-                        <label class="bold red">Total:</label><span> <%= total %></span><span class="bold">€</span>
+                        <label class="bold red">Total:</label><span> <%= orderTotal %></span><span class="bold">€</span>
                     </li>
                 <% }); %>
             </ul>
