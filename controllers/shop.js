@@ -55,6 +55,7 @@ exports.getProduct = (req, res, next) => {
     });
 };
 
+// #region Cart
 exports.getCart = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
@@ -84,6 +85,7 @@ exports.postCart = (req, res, next) => {
       res.redirect('/cart');
     });
 };
+// #endregion
 
 exports.postCartDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
@@ -99,6 +101,7 @@ exports.postCartDeleteProduct = (req, res, next) => {
     });
 };
 
+// #region Order
 exports.postOrder = (req, res, next) => {
   req.user
     .populate('cart.items.productId')
@@ -144,6 +147,7 @@ exports.getOrders = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion
 
 exports.getInvoice = (req, res, next) => {
   const orderId = req.params.orderId;
@@ -189,20 +193,6 @@ exports.getInvoice = (req, res, next) => {
       pdfDoc.fontSize(20).text('Total Price: €' + totalPrice);
 
       pdfDoc.end();
-      // fs.readFile(invoicePath, (err, data) => {
-      //   if (err) {
-      //     return next();
-      //   }
-      //   res.setHeader('Content-Type', 'application/pdf');
-      //   res.setHeader(
-      //     'Content-Disposition',
-      //     'inline; filename="' + invoiceName + '"'
-      //   );
-      //   res.send(data);
-      // });
-
-      // const file = fs.createReadStream(invoicePath);
-      // file.pipe(res);
     })
     .catch(err => {
       next(err);

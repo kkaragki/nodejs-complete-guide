@@ -5,6 +5,7 @@ const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
 
+// #region Login
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
   if (message.length > 0) {
@@ -19,26 +20,6 @@ exports.getLogin = (req, res, next) => {
     oldInput: {
       email: '',
       password: ''
-    },
-    validationErrors: []
-  });
-};
-
-exports.getSignup = (req, res, next) => {
-  let message = req.flash('error');
-  if (message.length > 0) {
-    message = message[0];
-  } else {
-    message = null;
-  }
-  res.render('auth/signup', {
-    path: '/signup',
-    pageTitle: 'Sign Up',
-    errorMessage: message,
-    oldInput: {
-      email: '',
-      password: '',
-      confirmPassword: ''
     },
     validationErrors: []
   });
@@ -110,6 +91,28 @@ exports.postLogin = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion
+
+// #region Sign Up
+exports.getSignup = (req, res, next) => {
+  let message = req.flash('error');
+  if (message.length > 0) {
+    message = message[0];
+  } else {
+    message = null;
+  }
+  res.render('auth/signup', {
+    path: '/signup',
+    pageTitle: 'Sign Up',
+    errorMessage: message,
+    oldInput: {
+      email: '',
+      password: '',
+      confirmPassword: ''
+    },
+    validationErrors: []
+  });
+};
 
 exports.postSignup = (req, res, next) => {
   const email = req.body.email;
@@ -150,6 +153,7 @@ exports.postSignup = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion
 
 exports.postLogout = (req, res, next) => {
   req.session.destroy(err => {
@@ -158,6 +162,7 @@ exports.postLogout = (req, res, next) => {
   });
 };
 
+// #region Reset Password
 exports.getReset = (req, res, next) => {
   let message = req.flash('error');
   if (message.length > 0) {
@@ -190,9 +195,9 @@ exports.postReset = (req, res, next) => {
         return user.save();
       })
       .then(result => {
-        // Code for sending mail for resetting password
+        // OPTIONAL: Code for sending mail for resetting password
         // ...
-        console.log(result);
+        // Simple redirect to the reset password page with the unique token
         res.redirect(`http://localhost:3000/reset/${token}`);
       })
       .catch(err => {
@@ -202,7 +207,9 @@ exports.postReset = (req, res, next) => {
       });
   });
 };
+// #endregion
 
+// #region Create New Password
 exports.getNewPassword = (req, res, next) => {
   const token = req.params.token;
   User.findOne({ resetToken: token, resetTokenExpiration: { $gt: Date.now() } })
@@ -258,3 +265,4 @@ exports.postNewPassword = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion

@@ -4,6 +4,7 @@ const { validationResult } = require('express-validator');
 
 const Product = require('../models/product');
 
+// #region Add Product
 exports.getAddProduct = (req, res, next) => {
   res.render('admin/edit-product', {
     pageTitle: 'Add Product',
@@ -74,7 +75,9 @@ exports.postAddProduct = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion
 
+// #region Edit Product
 exports.getEditProduct = (req, res, next) => {
   const editMode = req.query.edit;
   if (!editMode) {
@@ -151,6 +154,7 @@ exports.postEditProduct = (req, res, next) => {
       return next(error);
     });
 };
+// #endregion
 
 exports.getProducts = (req, res, next) => {
   Product.find({ userId: req.user._id })
