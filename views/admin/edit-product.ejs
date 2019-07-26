@@ -19,7 +19,7 @@
                     type="text" 
                     name="title" 
                     id="title" 
-                    value="<% if (editing || hasError) { %> <%= product.title %> <% } %>">
+                    value="<% if (editing || hasError) { %><%= product.title %><% } %>">
             </div>
             <div class="form-control">
                 <label for="imageURL">Image URL</label>
@@ -28,7 +28,7 @@
                     type="text" 
                     name="imageURL" 
                     id="imageURL"
-                    value="<% if (editing || hasError) { %> <%= product.imageURL %> <% } %>">
+                    value="<% if (editing || hasError) { %><%= product.imageURL %><% } %>">
             </div>
             <div class="form-control">
                 <label for="price">Price</label>
@@ -38,7 +38,7 @@
                     name="price" 
                     id="price" 
                     step="0.01"
-                    value="<% if (editing || hasError) { %> <%= product.price %> <% } %>">
+                    value="<% if (editing || hasError) { %><%= product.price %><% } %>">
             </div>
             <div class="form-control">
                 <label for="description">Description</label>
@@ -47,7 +47,7 @@
                     name="description" 
                     id="description"
                     rows="5">
-                    <% if (editing || hasError) { %> <%= product.description %> <% } %>
+                    <% if (editing || hasError) { %><%= product.description %><% } %>
                 </textarea>
             </div>
             <% if (editing) { %>
