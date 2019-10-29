@@ -30,7 +30,7 @@
     "mysql2": "^1.6.5",
     "pdfkit": "^0.10.0",
     "pug": "^2.0.4",
-    "sequelize": "^5.9.2",
+    "sequelize": "^5.15.1",
     "serve-favicon": "^2.5.0"
   }
 }
