@@ -120,7 +120,7 @@ app.use((err, req, res, next) => {
 
 /* Mongoose CODE */
 mongoose
-  .connect(MONGODB_URI, { useNewUrlParser: true })
+  .connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
     app.listen(3000);
   })
